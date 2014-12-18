@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action={{ url_for('upload') }} class=add-entry method = post>
+      <dl>
+        <dt>Title:
+        <dd><input type=text size=30 name=Title>
+       
+        <dt>Content:
+        <dd><textarea name=Content rows=10 cols=60></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  
+<ul class=entries>
+  {% for entry in entries %}
+    <li><h2> {{ entry[0] }} <a href="{{ url_for('showDetail', no = entry[0]) }}"> {{ entry[1] }} </a> </h2>
+<div class = cnt_width> {{ entry[2] }} </div>
+  {% else %}
+    <li><em>NOTHING</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

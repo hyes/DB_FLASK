@@ -1,0 +1,34 @@
+<!doctype html>
+<title> 댓글댓글!</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+
+<ul class=entries>
+  {% for entry in entries %}
+    <li><h2> {{ entry[0] }} <a href="{{ url_for('load') }}"> {{ entry[1] }} </a> </h2>
+<div class = cnt_width> {{ entry[2] }} </div>
+{% endfor  %} 
+
+<ul class = replies>
+ {% for reply in replies %}
+<li><h4> {{ reply[0] }} {{ reply[1] }} </h4> 
+<div class = cnt_width> {{ reply[2] }} </div>
+ {% else %}
+    <li><em> No REPLY _! </em>
+
+{% endfor %}
+</ul>
+
+  {% for entry in entries %}
+<form action="{{ url_for('reply', no = entry[0]) }}" method = post>
+ {% endfor %}
+  <dl>
+  <dt>re_title
+  <dd><input type=text size=30 name=Title>
+  <dt>re_content
+  <dd><textarea name=Content rows=10 cols=60></textarea>
+  <dd><input type=submit value=Share>
+  </dl>
+</form>
+{% block body  %}
+{% endblock %}
